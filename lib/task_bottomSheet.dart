@@ -7,7 +7,6 @@ class TaskBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * .3,
-      color: Colors.white,
     );
   }
 }
