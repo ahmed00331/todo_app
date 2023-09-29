@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:todo/taps/settings_tap.dart';
-import 'package:todo/taps/todo_list_tap.dart';
-import 'package:todo/task_bottomSheet.dart';
+import 'package:todo/screens/tasks/task_bottomSheet.dart';
 
-class HomeScreen extends StatelessWidget {
+import '../screens/settings/settings_tap.dart';
+import '../screens/tasks/todo_list_tap.dart';
+
+class HomeLayout extends StatelessWidget {
   static const String routeName = "Home";
 
   int index = 0;
 
-  HomeScreen({super.key});
+  HomeLayout({super.key});
 
   @override
   Widget build(BuildContext context) {

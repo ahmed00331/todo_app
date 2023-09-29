@@ -1,9 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:todo/my_theme_data.dart';
+import 'package:todo/shared/styles/my_theme_data.dart';
 
 import 'firebase_options.dart';
-import 'home_screen.dart';
+import 'layout/home_layout.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,9 +22,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: HomeScreen.routeName,
+      initialRoute: HomeLayout.routeName,
       routes: {
-        HomeScreen.routeName : (context) => HomeScreen(),
+        HomeLayout.routeName: (context) => HomeLayout(),
       },
       theme: MyThemeData.lightTheme,
     );

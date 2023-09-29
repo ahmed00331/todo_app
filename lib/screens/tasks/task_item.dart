@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'my_theme_data.dart';
+import '../../shared/styles/my_theme_data.dart';
 
-class Task extends StatelessWidget {
-  const Task({super.key});
+class TaskItem extends StatelessWidget {
+  const TaskItem({super.key});
 
   @override
   Widget build(BuildContext context) {

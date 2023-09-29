@@ -1,6 +1,6 @@
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:todo/task.dart';
+import 'package:todo/screens/tasks/task_item.dart';
 
 class TodoListTap extends StatefulWidget {
   const TodoListTap({super.key});
@@ -36,7 +36,7 @@ class _TodoListTapState extends State<TodoListTap> {
         Expanded(
           child: ListView.separated(
               itemBuilder: (context, index) {
-                return Task();
+                return TaskItem();
               },
               separatorBuilder: (context, index) => SizedBox(
                     height: 20,
