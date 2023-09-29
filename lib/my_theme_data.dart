@@ -9,24 +9,21 @@ class MyThemeData {
     textTheme: TextTheme(
       bodyLarge: GoogleFonts.poppins(
         fontSize: 22,
-        color: Colors.white,
-        fontWeight: FontWeight.bold,
-      ),
-      bodyMedium: GoogleFonts.poppins(
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
-        color: accentColor
-      )
-    ),
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),
+        bodyMedium: GoogleFonts.poppins(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Color(0xff383838))),
     scaffoldBackgroundColor: const Color(0xffDFECDB),
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      selectedItemColor: Colors.blueAccent,
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedItemColor: accentColor,
       unselectedItemColor: Colors.grey,
       backgroundColor: Colors.transparent,
       elevation: 0,
     ),
     appBarTheme: const AppBarTheme(
-      toolbarHeight: 154,
       backgroundColor: Color(0xff5D9CEC),
     ),
   );

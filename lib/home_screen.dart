@@ -3,26 +3,23 @@ import 'package:todo/taps/settings_tap.dart';
 import 'package:todo/taps/todo_list_tap.dart';
 import 'package:todo/task_bottomSheet.dart';
 
-
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   static const String routeName = "Home";
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   int index = 0;
+
+  HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       appBar: AppBar(
-        title: Padding(
-          padding: EdgeInsets.only(bottom: 50, left: 40),
-          child:
-              Text("To Do List", style: Theme.of(context).textTheme.bodyLarge),
-        ),
+        title: Text("To Do List",
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge!
+                .copyWith(color: Colors.white)),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
@@ -30,53 +27,60 @@ class _HomeScreenState extends State<HomeScreen> {
           side: BorderSide(color: Colors.white, width: 4),
         ),
         onPressed: () {
-          showTaskBottomSheet();
+          showTaskBottomSheet(context);
         },
         child: const Icon(Icons.add),
       ),
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 8,
-        child: BottomNavigationBar(
-          currentIndex: index,
-          onTap: (value){
-            index = value;
-            setState(() {
-
-            });
-          },
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.list,
-                size: 32,
+      bottomNavigationBar: ClipRRect(
+        borderRadius: const BorderRadius.only(
+            topRight: Radius.circular(18), topLeft: Radius.circular(18)),
+        child: BottomAppBar(
+          shape: const CircularNotchedRectangle(),
+          notchMargin: 8,
+          child: BottomNavigationBar(
+            iconSize: 35,
+            showUnselectedLabels: false,
+            currentIndex: index,
+            onTap: (value) {
+                index = value;
+            },
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.list,
+                ),
+                label: "List",
               ),
-              label: "List",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.settings,
-                size: 32,
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.settings_outlined,
+                ),
+                label: "Settings",
               ),
-              label: "Settings",
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       body: taps[index],
     );
   }
+
   List<Widget> taps = [
+    TodoListTap(),
     SettingsTap(),
-    TodoListTap()
   ];
 
-  void showTaskBottomSheet(){
+  void showTaskBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       builder: (context) {
-      return TaskBottomSheet();
-    },
+        return Padding(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: TaskBottomSheet(),
+        );
+      },
     );
   }
 }
