@@ -3,15 +3,12 @@ import 'package:todo/taps/settings_tap.dart';
 import 'package:todo/taps/todo_list_tap.dart';
 import 'package:todo/task_bottomSheet.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   static const String routeName = "Home";
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   int index = 0;
+
+  HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
           side: BorderSide(color: Colors.white, width: 4),
         ),
         onPressed: () {
-          showTaskBottomSheet();
+          showTaskBottomSheet(context);
         },
         child: const Icon(Icons.add),
       ),
@@ -45,9 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
             showUnselectedLabels: false,
             currentIndex: index,
             onTap: (value) {
-              setState(() {
                 index = value;
-              });
             },
             items: const [
               BottomNavigationBarItem(
@@ -75,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
     SettingsTap(),
   ];
 
-  void showTaskBottomSheet() {
+  void showTaskBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,

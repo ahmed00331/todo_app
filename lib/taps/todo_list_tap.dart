@@ -41,7 +41,7 @@ class _TodoListTapState extends State<TodoListTap> {
               separatorBuilder: (context, index) => SizedBox(
                     height: 20,
                   ),
-              itemCount: 3),
+              itemCount: 1),
         )
       ],
     );
