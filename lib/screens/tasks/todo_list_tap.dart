@@ -30,15 +30,15 @@ class _TodoListTapState extends State<TodoListTap> {
             });
           },
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Expanded(
           child: ListView.separated(
               itemBuilder: (context, index) {
-                return TaskItem();
+                return const TaskItem();
               },
-              separatorBuilder: (context, index) => SizedBox(
+              separatorBuilder: (context, index) => const SizedBox(
                     height: 20,
                   ),
               itemCount: 1),
