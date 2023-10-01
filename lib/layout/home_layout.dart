@@ -75,7 +75,7 @@ class HomeLayout extends StatelessWidget {
 
   List<Widget> taps = [
     const TodoListTap(),
-    const SettingsTap(),
+    SettingsTap(),
   ];
 
   void showTaskBottomSheet(BuildContext context) {
