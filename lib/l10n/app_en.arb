@@ -1,0 +1,11 @@
+{
+  "appTitle": "Todo List",
+  "lang": "Language",
+  "arab": "Arabic",
+  "eng": "English",
+  "settings": "Settings",
+  "mode": "Mode",
+  "list": "List",
+  "light": "Light",
+  "dark": "Dark"
+}

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:todo/providers/my_provider.dart';
 import 'package:todo/screens/tasks/task_bottomSheet.dart';
 
 import '../providers/test.dart';
@@ -17,10 +19,11 @@ class HomeLayout extends StatelessWidget {
       create: (context) => NavigationProvider(),
       builder: (context, child) {
         var pro = Provider.of<NavigationProvider>(context);
+        var provider = Provider.of<MyProvider>(context);
         return Scaffold(
           extendBody: true,
           appBar: AppBar(
-            title: Text("To Do List",
+            title: Text(AppLocalizations.of(context)!.appTitle,
                 style: Theme.of(context)
                     .textTheme
                     .bodyLarge!
@@ -41,6 +44,9 @@ class HomeLayout extends StatelessWidget {
             borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(18), topLeft: Radius.circular(18)),
             child: BottomAppBar(
+              color: provider.modeApp == ThemeMode.light
+                  ? Colors.white
+                  : Color(0xff141922),
               shape: const CircularNotchedRectangle(),
               notchMargin: 8,
               child: BottomNavigationBar(
@@ -50,18 +56,18 @@ class HomeLayout extends StatelessWidget {
                 onTap: (value) {
                   pro.onTap(value);
                 },
-                items: const [
+                items: [
                   BottomNavigationBarItem(
                     icon: Icon(
                       Icons.list,
                     ),
-                    label: "List",
+                    label: AppLocalizations.of(context)!.list,
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(
                       Icons.settings_outlined,
                     ),
-                    label: "Settings",
+                    label: AppLocalizations.of(context)!.settings,
                   ),
                 ],
               ),

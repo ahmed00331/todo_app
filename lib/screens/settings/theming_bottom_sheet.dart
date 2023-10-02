@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/my_provider.dart';
@@ -11,6 +12,9 @@ class ThemingBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     var pro = Provider.of<MyProvider>(context);
     return Container(
+      color: pro.modeApp == ThemeMode.light
+          ? Color(0xffffffff)
+          : Color(0xff141922),
       height: MediaQuery.of(context).size.height * .2,
       padding: const EdgeInsets.all(12),
       child: Column(
@@ -22,20 +26,20 @@ class ThemingBottomSheet extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  "Light",
+                  AppLocalizations.of(context)!.light,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: pro.modeApp == ThemeMode.light
                           ? MyThemeData.accentColor
-                          : Colors.black54),
+                          : Colors.white),
                 ),
                 const Spacer(),
                 pro.modeApp == ThemeMode.light
                     ? Icon(
-                        Icons.check,
+                  Icons.check,
                         size: 30,
                         color: pro.modeApp == ThemeMode.light
                             ? MyThemeData.accentColor
-                            : Colors.black54,
+                            : Colors.white,
                       )
                     : const SizedBox.shrink()
               ],
@@ -47,7 +51,7 @@ class ThemingBottomSheet extends StatelessWidget {
             },
             child: Row(
               children: [
-                Text("Dark",
+                Text(AppLocalizations.of(context)!.dark,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: pro.modeApp == ThemeMode.dark
                             ? MyThemeData.accentColor
@@ -56,12 +60,12 @@ class ThemingBottomSheet extends StatelessWidget {
                 pro.modeApp == ThemeMode.light
                     ? const SizedBox.shrink()
                     : Icon(
-                        Icons.check,
-                        size: 30,
-                        color: pro.modeApp == ThemeMode.dark
-                            ? MyThemeData.accentColor
-                            : Colors.black54,
-                      ),
+                  Icons.check,
+                  size: 30,
+                  color: pro.modeApp == ThemeMode.dark
+                      ? MyThemeData.accentColor
+                      : Colors.black54,
+                ),
               ],
             ),
           ),

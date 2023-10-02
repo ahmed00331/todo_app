@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo/providers/my_provider.dart';
 
 import '../../shared/styles/my_theme_data.dart';
 
@@ -7,9 +9,13 @@ class TaskItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var pro = Provider.of<MyProvider>(context);
     return SizedBox(
       height: 90,
       child: Card(
+        color: pro.modeApp == ThemeMode.light
+            ? Color(0xffffffff)
+            : Color(0xff141922),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
         margin: EdgeInsets.symmetric(horizontal: 20),
         child: Padding(
@@ -42,10 +48,13 @@ class TaskItem extends StatelessWidget {
                   Row(
                     children: [
                       Text("Description",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(fontSize: 15)),
+                          style:
+                              Theme.of(context).textTheme.bodySmall!.copyWith(
+                                    fontSize: 15,
+                                    color: pro.modeApp == ThemeMode.light
+                                        ? Colors.grey
+                                        : Colors.white,
+                                  )),
                     ],
                   ),
                 ],

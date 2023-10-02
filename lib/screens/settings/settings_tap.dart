@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/providers/my_provider.dart';
 import 'package:todo/screens/settings/theming_bottom_sheet.dart';
@@ -14,8 +15,6 @@ class SettingsTap extends StatefulWidget {
 }
 
 class _SettingTapState extends State<SettingsTap> {
-  bool isEnglish = true;
-
   @override
   Widget build(BuildContext context) {
     var pro = Provider.of<MyProvider>(context);
@@ -24,24 +23,42 @@ class _SettingTapState extends State<SettingsTap> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Language"),
+          Text(AppLocalizations.of(context)!.lang),
+          SizedBox(
+            height: 20,
+          ),
           InkWell(
             onTap: () {
               languageBottomSheet();
             },
             child: Container(
+              height: 50,
               margin: const EdgeInsets.symmetric(horizontal: 18),
               padding: const EdgeInsets.symmetric(horizontal: 18),
               width: double.infinity,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: MyThemeData.accentColor),
               ),
               child: Row(
                 children: [
-                  Text(pro.languageCode == "en" ? "English" : "Arabic"),
+                  Text(
+                    pro.languageCode == "en"
+                        ? AppLocalizations.of(context)!.eng
+                        : AppLocalizations.of(context)!.arab,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: pro.modeApp == ThemeMode.light
+                              ? MyThemeData.accentColor
+                              : MyThemeData.accentColor,
+                        ),
+                  ),
                   Spacer(),
-                  Icon(Icons.arrow_drop_up),
+                  Icon(
+                    Icons.arrow_drop_up,
+                    color: pro.modeApp == ThemeMode.light
+                        ? Colors.black54
+                        : MyThemeData.accentColor,
+                  ),
                 ],
               ),
             ),
@@ -49,24 +66,42 @@ class _SettingTapState extends State<SettingsTap> {
           const SizedBox(
             height: 20,
           ),
-          Text("Mode"),
+          Text(AppLocalizations.of(context)!.mode),
+          SizedBox(
+            height: 20,
+          ),
           InkWell(
             onTap: () {
               themingBottomSheet();
             },
             child: Container(
+              height: 50,
               margin: const EdgeInsets.symmetric(horizontal: 18),
               padding: const EdgeInsets.symmetric(horizontal: 18),
               width: double.infinity,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: MyThemeData.accentColor),
               ),
               child: Row(
                 children: [
-                  Text(pro.modeApp == ThemeMode.light ? "Light" : "Dark"),
+                  Text(
+                    pro.modeApp == ThemeMode.light
+                        ? AppLocalizations.of(context)!.light
+                        : AppLocalizations.of(context)!.dark,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: pro.modeApp == ThemeMode.light
+                              ? MyThemeData.accentColor
+                              : MyThemeData.accentColor,
+                        ),
+                  ),
                   Spacer(),
-                  Icon(Icons.arrow_drop_up),
+                  Icon(
+                    Icons.arrow_drop_up,
+                    color: pro.modeApp == ThemeMode.light
+                        ? Colors.black54
+                        : MyThemeData.accentColor,
+                  ),
                 ],
               ),
             ),
