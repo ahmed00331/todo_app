@@ -30,7 +30,7 @@ class ThemingBottomSheet extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: pro.modeApp == ThemeMode.light
                           ? MyThemeData.accentColor
-                          : Colors.white),
+                          : Colors.grey),
                 ),
                 const Spacer(),
                 pro.modeApp == ThemeMode.light

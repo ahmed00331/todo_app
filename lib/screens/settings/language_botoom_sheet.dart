@@ -28,7 +28,7 @@ class LanguageBottomSheet extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: pro.languageCode == "en"
                           ? MyThemeData.accentColor
-                          : Colors.white),
+                          : Colors.grey),
                 ),
                 const Spacer(),
                 pro.languageCode == "en"
@@ -53,9 +53,7 @@ class LanguageBottomSheet extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: pro.languageCode == "ar"
                             ? MyThemeData.accentColor
-                            : pro.modeApp == ThemeMode.light
-                                ? MyThemeData.accentColor
-                                : Colors.white)),
+                            : Colors.grey)),
                 const Spacer(),
                 pro.languageCode == "en"
                     ? const SizedBox.shrink()
