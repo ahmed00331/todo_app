@@ -3,7 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/providers/my_provider.dart';
 
-import '../../shared/styles/my_theme_data.dart';
+import '../../shared/styles/colors.dart';
 
 class LanguageBottomSheet extends StatelessWidget {
   @override
@@ -26,23 +26,22 @@ class LanguageBottomSheet extends StatelessWidget {
                 Text(
                   AppLocalizations.of(context)!.eng,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: pro.languageCode == "en"
-                          ? MyThemeData.accentColor
-                          : Colors.grey),
+                      color: pro.languageCode == "en" ? accentColor : Colors.grey),
                 ),
                 const Spacer(),
                 pro.languageCode == "en"
                     ? Icon(
-                  Icons.check,
-                  size: 30,
-                  color: pro.languageCode == "en"
-                      ? MyThemeData.accentColor
-                      : Colors.black54,
-                )
+                        Icons.check,
+                        size: 30,
+                        color: pro.languageCode == "en"
+                            ? accentColor
+                            : Colors.black54,
+                      )
                     : const SizedBox.shrink()
               ],
             ),
           ),
+          SizedBox(height: 15),
           InkWell(
             onTap: () {
               pro.changeLanguage("ar");
@@ -52,7 +51,7 @@ class LanguageBottomSheet extends StatelessWidget {
                 Text(AppLocalizations.of(context)!.arab,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: pro.languageCode == "ar"
-                            ? MyThemeData.accentColor
+                            ? accentColor
                             : Colors.grey)),
                 const Spacer(),
                 pro.languageCode == "en"
@@ -61,7 +60,7 @@ class LanguageBottomSheet extends StatelessWidget {
                         Icons.check,
                         size: 30,
                         color: pro.languageCode == "ar"
-                            ? MyThemeData.accentColor
+                            ? accentColor
                             : Colors.black54,
                       )
               ],

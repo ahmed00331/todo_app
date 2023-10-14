@@ -3,7 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/my_provider.dart';
-import '../../shared/styles/my_theme_data.dart';
+import '../../shared/styles/colors.dart';
 
 class ThemingBottomSheet extends StatelessWidget {
   const ThemingBottomSheet({super.key});
@@ -29,21 +29,24 @@ class ThemingBottomSheet extends StatelessWidget {
                   AppLocalizations.of(context)!.light,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: pro.modeApp == ThemeMode.light
-                          ? MyThemeData.accentColor
+                          ? accentColor
                           : Colors.grey),
                 ),
                 const Spacer(),
                 pro.modeApp == ThemeMode.light
                     ? Icon(
-                  Icons.check,
+                        Icons.check,
                         size: 30,
                         color: pro.modeApp == ThemeMode.light
-                            ? MyThemeData.accentColor
+                            ? accentColor
                             : Colors.white,
                       )
                     : const SizedBox.shrink()
               ],
             ),
+          ),
+          SizedBox(
+            height: 15,
           ),
           InkWell(
             onTap: () {
@@ -54,7 +57,7 @@ class ThemingBottomSheet extends StatelessWidget {
                 Text(AppLocalizations.of(context)!.dark,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: pro.modeApp == ThemeMode.dark
-                            ? MyThemeData.accentColor
+                            ? accentColor
                             : Colors.black54)),
                 const Spacer(),
                 pro.modeApp == ThemeMode.light
@@ -63,8 +66,8 @@ class ThemingBottomSheet extends StatelessWidget {
                   Icons.check,
                   size: 30,
                   color: pro.modeApp == ThemeMode.dark
-                      ? MyThemeData.accentColor
-                      : Colors.black54,
+                            ? accentColor
+                            : Colors.black54,
                 ),
               ],
             ),

@@ -1,52 +1,161 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+import 'colors.dart';
 
 class MyThemeData {
-  static Color accentColor = const Color(0xff5D9CEC);
+  static Color primaryColor = accentColor;
 
   static ThemeData lightTheme = ThemeData(
-    textTheme: TextTheme(
-      bodyLarge: GoogleFonts.poppins(
-        fontSize: 22,
-          color: Colors.black,
-          fontWeight: FontWeight.bold,
-        ),
-        bodyMedium: GoogleFonts.poppins(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Color(0xff383838))),
-    scaffoldBackgroundColor: const Color(0xffDFECDB),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      selectedItemColor: accentColor,
-      unselectedItemColor: Colors.grey,
-      backgroundColor: Colors.transparent,
-      elevation: 0,
+    primaryColor: primaryColor,
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: primaryColor,
+      primary: primaryColor,
+      background: const Color(0xffDFECDB),
+      secondary: const Color(0xffffffff),
+      onPrimary: primaryColor,
+      onSecondary: const Color(0xff000000),
     ),
-    appBarTheme: const AppBarTheme(
-      backgroundColor: Color(0xff5D9CEC),
+    scaffoldBackgroundColor: const Color(0xffDFECDB),
+    appBarTheme: AppBarTheme(
+      backgroundColor: primaryColor,
+      elevation: 0,
+      centerTitle: false,
+      toolbarHeight: 150,
+      titleTextStyle: const TextStyle(
+        color: Colors.white,
+        fontFamily: 'Poppins',
+        fontSize: 22,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: Colors.transparent,
+      type: BottomNavigationBarType.fixed,
+      elevation: 0,
+      selectedIconTheme: IconThemeData(
+        color: primaryColor,
+      ),
+      selectedItemColor: primaryColor,
+      unselectedIconTheme: IconThemeData(
+        color: Colors.grey.shade700,
+      ),
+      unselectedItemColor: Colors.grey.shade700,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+    ),
+    textTheme: TextTheme(
+      titleLarge: const TextStyle(
+        color: Colors.white,
+        fontFamily: 'Poppins',
+        fontSize: 22,
+        fontWeight: FontWeight.bold,
+      ),
+      titleMedium: TextStyle(
+        color: primaryColor,
+        fontFamily: 'Poppins',
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+      ),
+      bodyLarge: const TextStyle(
+        color: Colors.black,
+        fontFamily: 'Poppins',
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+      ),
+      bodyMedium: const TextStyle(
+        color: Colors.black,
+        fontFamily: 'Poppins',
+        fontSize: 17,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    bottomSheetTheme: const BottomSheetThemeData(
+      backgroundColor: Colors.white,
+      showDragHandle: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15), topRight: Radius.circular(15)),
+      ),
+    ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: primaryColor,
     ),
   );
 
   static ThemeData darkTheme = ThemeData(
-    textTheme: TextTheme(
-        bodyLarge: GoogleFonts.poppins(
-          fontSize: 22,
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-        ),
-        bodyMedium: GoogleFonts.poppins(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Color(0xffffffff))),
-    scaffoldBackgroundColor: const Color(0xff060E1E),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      selectedItemColor: accentColor,
-      unselectedItemColor: Colors.grey,
-      backgroundColor: Colors.transparent,
-      elevation: 0,
+    primaryColor: const Color(0xff5D9CEC),
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: const Color(0xff5D9CEC),
+      primary: const Color(0xff5D9CEC),
+      background: const Color(0xff060E1E),
+      secondary: const Color(0xff141922),
+      onPrimary: const Color(0xffffffff),
+      onSecondary: const Color(0xffffffff),
     ),
+    scaffoldBackgroundColor: const Color(0xff060E1E),
     appBarTheme: const AppBarTheme(
       backgroundColor: Color(0xff5D9CEC),
+      elevation: 0,
+      centerTitle: false,
+      toolbarHeight: 150,
+      titleTextStyle: TextStyle(
+        color: Color(0xff060E1E),
+        fontFamily: 'Poppins',
+        fontSize: 22,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: Colors.transparent,
+      type: BottomNavigationBarType.fixed,
+      elevation: 0,
+      selectedIconTheme: IconThemeData(
+        color: primaryColor,
+      ),
+      selectedItemColor: primaryColor,
+      unselectedIconTheme: IconThemeData(
+        color: Colors.grey.shade700,
+      ),
+      unselectedItemColor: Colors.grey.shade700,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+    ),
+    textTheme: TextTheme(
+      titleLarge: const TextStyle(
+        color: Color(0xff060E1E),
+        fontFamily: 'Poppins',
+        fontSize: 22,
+        fontWeight: FontWeight.bold,
+      ),
+      titleMedium: TextStyle(
+        color: primaryColor,
+        fontFamily: 'Poppins',
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+      ),
+      bodyLarge: const TextStyle(
+        color: Colors.white,
+        fontFamily: 'Poppins',
+        fontSize: 17,
+        fontWeight: FontWeight.normal,
+      ),
+      bodyMedium: const TextStyle(
+        color: Colors.white,
+        fontFamily: 'Poppins',
+        fontSize: 15,
+        fontWeight: FontWeight.normal,
+      ),
+    ),
+    bottomSheetTheme: const BottomSheetThemeData(
+      backgroundColor: Color(0xff141922),
+      showDragHandle: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15), topRight: Radius.circular(15)),
+      ),
+    ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: primaryColor,
     ),
   );
 }

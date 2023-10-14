@@ -1,6 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo/models/task_model.dart';
+import 'package:todo/providers/my_provider.dart';
 import 'package:todo/providers/task_bottom_sheet_provider.dart';
+import 'package:todo/shared/firebase/firebase_functions.dart';
+import 'package:todo/shared/styles/colors.dart';
 
 class TaskBottomSheet extends StatelessWidget {
   @override
@@ -9,8 +14,12 @@ class TaskBottomSheet extends StatelessWidget {
       create: (context) => TaskBottomSheetProvider(),
       builder: (context, _) {
         var pro = Provider.of<TaskBottomSheetProvider>(context);
+        var provider = Provider.of<MyProvider>(context);
         return SingleChildScrollView(
-          child: SizedBox(
+          child: Container(
+            color: provider.isLight()
+                ? const Color(0xffffffff)
+                : const Color(0xff141922),
             height: MediaQuery.of(context).size.height * .57,
             child: Padding(
               padding: const EdgeInsets.all(21.0),
@@ -69,7 +78,7 @@ class TaskBottomSheet extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 12),
                       child: Text(
-                        "Add Task",
+                        "Select Date",
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ),
@@ -93,9 +102,19 @@ class TaskBottomSheet extends StatelessWidget {
                       height: 10,
                     ),
                     ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: accentColor,
+                            fixedSize: Size.fromHeight(50)),
                         onPressed: () {
                           if (pro.formKey.currentState!.validate()) {
-                            return;
+                            TaskModel taskModel = TaskModel(
+                                userId: FirebaseAuth.instance.currentUser!.uid,
+                                title: pro.titleController.text,
+                                description: pro.descriptionController.text,
+                                date: DateUtils.dateOnly(pro.selectedDate)
+                                    .millisecondsSinceEpoch);
+                            FirebaseFunctions.addTask(taskModel);
+                            Navigator.pop(context);
                           }
                         },
                         child: Text(

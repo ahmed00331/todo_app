@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/providers/my_provider.dart';
+import 'package:todo/screens/authentication/login_screen.dart';
 import 'package:todo/screens/tasks/task_bottomSheet.dart';
 
 import '../providers/test.dart';
@@ -23,11 +25,29 @@ class HomeLayout extends StatelessWidget {
         return Scaffold(
           extendBody: true,
           appBar: AppBar(
-            title: Text(AppLocalizations.of(context)!.appTitle,
+            toolbarHeight: 80,
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: IconButton(
+                    onPressed: () {
+                      FirebaseAuth.instance.signOut();
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, LoginScreen.routeName, (route) => false);
+                    },
+                    icon: Icon(
+                      Icons.logout,
+                      size: 30,
+                      color: Colors.white,
+                    )),
+              )
+            ],
+            title: Text(
+                "${AppLocalizations.of(context)!.appTitle}, ${provider.userModel?.name}",
                 style: Theme.of(context)
                     .textTheme
                     .bodyLarge!
-                    .copyWith(color: Colors.white)),
+                    .copyWith(color: Colors.white, fontSize: 20)),
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
@@ -38,7 +58,10 @@ class HomeLayout extends StatelessWidget {
             onPressed: () {
               showTaskBottomSheet(context);
             },
-            child: const Icon(Icons.add),
+            child: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
           ),
           bottomNavigationBar: ClipRRect(
             borderRadius: const BorderRadius.only(
@@ -58,12 +81,14 @@ class HomeLayout extends StatelessWidget {
                 },
                 items: [
                   BottomNavigationBarItem(
+                    tooltip: "List",
                     icon: Icon(
                       Icons.list,
                     ),
                     label: AppLocalizations.of(context)!.list,
                   ),
                   BottomNavigationBarItem(
+                    tooltip: "Settings",
                     icon: Icon(
                       Icons.settings_outlined,
                     ),
